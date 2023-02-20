@@ -8,11 +8,12 @@ class OszFileEventHandler(FileSystemEventHandler):
         osu_path = "/Applications/osu!.app/Contents/Resources/drive_c/osu!/Songs"
         if not event.is_directory:
             if event.src_path[-4:] == ".osz":
-                zip_name = event.src_path[:-3] + "zip"
-                os.system("mv \"" + event.src_path + "\" \"" + zip_name + "\"")
-                os.system("unzip \"" + zip_name + "\" -d \"" + event.src_path[:-4] +"\"")
+                # zip_name = event.src_path[:-3] + "zip"
+                file_name = event.src_path
+                # os.system("mv \"" + event.src_path + "\" \"" + zip_name + "\"")
+                os.system("unzip \"" + file_name + "\" -d \"" + event.src_path[:-4] +"\"")
                 os.system("mv \"" + event.src_path[:-4] + "\" \"" + osu_path + "\"")
-                os.system("rm \"" + zip_name + "\"")
+                os.system("rm \"" + file_name + "\"")
 
 if __name__ == "__main__":
     path = "."
